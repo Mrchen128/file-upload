@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" multiple id="file">
+    <button>上传</button>
+    <img src="" alt="" id="img">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    document.getElementById("file").onchange=function(){
+        console.log(this.files);
+        let formDate=new FormData();//利用FormDate构造函数激昂文件转换为二进制
+        formDate.append("file",this.files[0])
+        axios.post("./img",formDate,{
+            "headers":{
+                "Content-Type":"multipart/form-data"
+            }
+        }).then(res=>{
+            console.log(res)
+            document.getElementById("img").src=res.data.imgurl
+        })
+    }
+</script>
+</body>
+</html>

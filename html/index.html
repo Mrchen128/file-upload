@@ -17,6 +17,7 @@
         console.log(this.files);
         let formDate=new FormData();//利用FormDate构造函数激昂文件转换为二进制
         formDate.append("file",this.files[0])
+        formDate.append('test','abcdefg')
         axios.post("./img",formDate,{
             "headers":{
                 "Content-Type":"multipart/form-data"
